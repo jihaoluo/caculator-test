@@ -2,6 +2,7 @@ package com.anway.calculator;
 
 import java.math.BigDecimal;
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.concurrent.locks.ReentrantLock;
 
 
@@ -9,17 +10,17 @@ import java.util.concurrent.locks.ReentrantLock;
  * 线程安全计算器
  * @author lokia
  */
-public class SafeCaculator implements ICaculator {
+public class SafeCalculator implements ICaculator {
 
     private BigDecimal currentVal;
-    private ArrayDeque<BigDecimal> undoQueue;
-    private ArrayDeque<BigDecimal> redoQueue;
+    private Deque<BigDecimal> undoQueue;
+    private Deque<BigDecimal> redoQueue;
     /**
      * 非公平锁
      */
     private ReentrantLock lock;
 
-    public SafeCaculator() {
+    public SafeCalculator() {
         this.lock = new ReentrantLock();
         this.currentVal = BigDecimal.ZERO;
         this.undoQueue = new ArrayDeque<>();
